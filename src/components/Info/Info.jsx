@@ -9,7 +9,7 @@ import UseCriteria from "./hooks/UseCriteria";
 export default function Info(){
   const { feedback, types, criteria, partialPoints, comments } = useSelector(state => state.mainReducer);
   const dispatch = useDispatch()
-  const filteredCriteria = criteria.filter((item)=>item.type === 'subtask')
+  const filteredCriteria = criteria.filter((item)=>{return item.type === 'subtask' || item.type === 'penalty'})
   const [wrongCriteria, partialCriteria, correctCriteria] = UseCriteria(types, filteredCriteria);
 
   const score = getTotalScore(types, criteria, partialPoints)
@@ -19,7 +19,7 @@ export default function Info(){
   const isVisible = feedback.isFeedbackVisible
   const blockClassName = isVisible ? 'info visible' : 'info'
 
-  const areAllPointsChecked = types.length === filteredCriteria.length
+  // const areAllPointsChecked = types.length === filteredCriteria.length
   const areAllAnswersRight = wrongCriteria.length === 0 && partialCriteria.length === 0
 
   return <div className={blockClassName}>
@@ -28,7 +28,7 @@ export default function Info(){
       <div className="header"><p className="close" onClick={()=>dispatch(toggleInfo())}>×</p></div>
 
     {
-      areAllPointsChecked ?
+      // areAllPointsChecked ?
       <>
         <div className="content">
           <p><strong>Ваша отметка - {score} балла(ов)</strong></p>
@@ -66,7 +66,8 @@ export default function Info(){
         <div className="copy">
           <span onClick={()=>navigator.clipboard.writeText(response)}>Скопировать в буфер</span>
         </div>
-      </>: <p><strong>Вы проверили не все пункты задания</strong></p>
+      </>
+      // : <p><strong>Вы проверили не все пункты задания</strong></p>
     }
     </>}
   </div>

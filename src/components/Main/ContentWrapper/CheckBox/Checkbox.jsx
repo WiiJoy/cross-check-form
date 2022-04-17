@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { changePartialPoints, changeMarkType, changeComments } from '../../../../redux/main/actions'
 
-export default function CheckBox({ text, maxPoints, id }){
+export default function CheckBox({ text, maxPoints, id, elType, isDisable = false }){
   const phrases = ['Не выполнено', 'Выполнено частично', 'Выполнено полностью']
+  const penaltyPhrases = ['Нет', '', 'Да']
   const [partialPoints, setPartialPoints] = useState(maxPoints/2);
   const dispatch = useDispatch();
   const { types, comments } = useSelector(state => state.mainReducer);
@@ -28,36 +29,69 @@ export default function CheckBox({ text, maxPoints, id }){
   }
 
   const changeMarkTypeAction = (event, inputIndex) => {
-    if(event.target.tagName === "INPUT") {
+    if(event === "INPUT") {
       dispatch(changeMarkType({id, type: inputIndex}))
     }
   }
 
-  return <div className="checkbox-container">
-    <div className="task-max-score">
-      <span>Балл за выполнение</span>
-      <p>{maxPoints}</p>
+  if (elType === 'subtask') {
+    return <div className="checkbox-container">
+      <div className="task-max-score">
+        <span>Балл за выполнение</span>
+        <p>{maxPoints}</p>
+      </div>
+      <div className="task-description">
+        <p className="task-title">{text}</p>
+        <button className="add-feedback" onClick={(e)=>{e.preventDefault(); setCommentInputVisibility(!isCommentInputVisible)}}>{!isCommentInputVisible? 'Добавить отзыв': 'Скрыть отзыв'}</button>
+        { isCommentInputVisible &&
+          <div className="add-form">
+            <textarea placeholder="Write your feedback here, it will be saved automatically."
+              value={comments.find((comment)=>comment.id === id)?.value || ''}
+              onInput={(event)=>dispatch(changeComments({id, value: event.target.value}))}/>
+          </div> }
+      </div>
+      <div className="radio-group">
+        {phrases.map((phrase, inputIndex)=>
+          <label style={{display: inputIndex === 1 ? "none" : "flex" }} key={phrase}>
+            {phrase}
+            <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event.target.tagName, inputIndex)}/>
+            <span className="checkmark"/>
+            {inputIndex === 1 &&
+            <input type='number' className={parialPointsInputClassName} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value)}/>}
+          </label>
+        )}
+      </div>
     </div>
-    <div className="task-description">
-      <p className="task-title">{text}</p>
-      <button className="add-feedback" onClick={(e)=>{e.preventDefault(); setCommentInputVisibility(!isCommentInputVisible)}}>{!isCommentInputVisible? 'Добавить отзыв': 'Скрыть отзыв'}</button>
-      { isCommentInputVisible &&
-        <div className="add-form">
-          <textarea placeholder="Write your feedback here, it will be saved automatically."
-            value={comments.find((comment)=>comment.id === id)?.value || ''}
-            onInput={(event)=>dispatch(changeComments({id, value: event.target.value}))}/>
-        </div> }
+  } else {
+    return <div className={isDisable ? "checkbox-container checkbox-container_red" : "checkbox-container"}>
+      <div className="task-max-score">
+        <span>Снятие баллов за наличие</span>
+        <p>{maxPoints}</p>
+      </div>
+      <div className="task-description">
+        <p className="task-title">{text}</p>
+        <button className="add-feedback" onClick={(e)=>{e.preventDefault(); setCommentInputVisibility(!isCommentInputVisible)}}>{!isCommentInputVisible? 'Добавить отзыв': 'Скрыть отзыв'}</button>
+        { isCommentInputVisible &&
+          <div className="add-form">
+            <textarea placeholder="Write your feedback here, it will be saved automatically."
+              value={comments.find((comment)=>comment.id === id)?.value || ''}
+              onInput={(event)=>dispatch(changeComments({id, value: event.target.value}))}/>
+          </div> }
+      </div>
+      <div className="radio-group">
+        {penaltyPhrases.map((phrase, inputIndex)=>
+          <label style={{display: inputIndex === 1 ? "none" : "flex" }} key={phrase}>
+            {phrase}
+            <input type="radio" name={id} checked={inputType === inputIndex} disabled={isDisable} onChange={(event)=>changeMarkTypeAction(event.target.tagName, inputIndex)}/>
+            <span className="checkmark"/>
+            {/* {inputIndex === 1 &&
+            <input type='number' className={parialPointsInputClassName} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value)}/>
+            } */}
+          </label>
+        )}
+      </div>
     </div>
-    <div className="radio-group">
-      {phrases.map((phrase, inputIndex)=>
-        <label key={phrase}>
-          {phrase}
-          <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex)}/>
-          <span className="checkmark"/>
-          {inputIndex === 1 &&
-          <input type='number' className={parialPointsInputClassName} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value)}/>}
-        </label>
-      )}
-    </div>
-  </div>
+  }
+
+  
 }
