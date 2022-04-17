@@ -25,7 +25,16 @@ export default function Header(){
 }, []);
 
   return <header className={headerClassName}>
-    <h1 className="title">{taskName}</h1>
-    <Score/>
+    <div className="header__main">
+      <h1 className="title">{taskName}</h1>
+      <Score/>
+    </div>
+    <div className="header__nav">
+      <a href="#main-check" className="header__nav__item">Изменение ширины в Chrome</a>
+      <a href="#mozilla" className="header__nav__item">Изменение ширины в Firefox</a>
+      <a href="#1280width" className="header__nav__item">1280px+</a>
+      <a href="#768width" className="header__nav__item">768px - 1279px</a>
+      <a href="#320width" className="header__nav__item">320px - 767px</a>
+    </div>
   </header>
 }

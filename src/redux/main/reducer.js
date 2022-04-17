@@ -22,19 +22,19 @@ const defaultState = {
 const mainReducer = createReducer(defaultState, {
   [changeMarkType]: (state, { payload }) => {
     if (state.types.find((item) => item.id === payload.id)) {
-      state.types = [...state.types.filter((item) => item.id !== payload.id), { id: payload.id, type: +payload.type }]
+      state.types = [...state.types.filter((item) => item.id !== payload.id), { id: payload.id, type: +payload.type, comp: payload.comp }]
     } else {
       state.types.push({
-        id: payload.id, type: +payload.type
+        id: payload.id, type: +payload.type, comp: payload.comp
       })
     }
   },
   [changePartialPoints]: (state, { payload }) => {
     if (state.partialPoints.find((item) => item.id === payload.id)) {
-      state.partialPoints = [...state.partialPoints.filter((item) => item.id !== payload.id), { id: payload.id, value: +payload.value }]
+      state.partialPoints = [...state.partialPoints.filter((item) => item.id !== payload.id), { id: payload.id, value: +payload.value, comp: payload.comp }]
     } else {
       state.partialPoints.push({
-        id: payload.id, value: +payload.value
+        id: payload.id, value: +payload.value, comp: payload.comp
       })
     }
   },

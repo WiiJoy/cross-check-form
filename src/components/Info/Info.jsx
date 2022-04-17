@@ -9,7 +9,7 @@ import UseCriteria from "./hooks/UseCriteria";
 export default function Info(){
   const { feedback, types, criteria, partialPoints, comments } = useSelector(state => state.mainReducer);
   const dispatch = useDispatch()
-  const filteredCriteria = criteria.filter((item)=>item.type === 'subtask')
+  const filteredCriteria = criteria.filter((item)=>{return item.type === 'subtask' || item.type === 'penalty'})
   const [wrongCriteria, partialCriteria, correctCriteria] = UseCriteria(types, filteredCriteria);
 
   const score = getTotalScore(types, criteria, partialPoints)
