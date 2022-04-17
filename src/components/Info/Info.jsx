@@ -60,6 +60,17 @@ export default function Info(){
           </React.Fragment>)
         }
 
+        { !!correctCriteria.length && <p><strong>Полностью выполненные пункты: </strong></p>  }
+        {
+          correctCriteria.map((correct, index)=><React.Fragment key={correct.id}>
+              <p>{index+1}&#41; {correct.text}</p>
+              {comments.find((comment)=>comment.id===correct.id) &&
+                <p>Комментарий проверяющего: <strong>{comments.find((comment)=>comment.id===correct.id).value}</strong> </p>
+              }
+            </React.Fragment>
+          )
+        }
+
         { areAllAnswersRight && <p><strong>Все пункты выполнены полностью!</strong></p> }
         { !areAllAnswersRight && !!correctCriteria.length && <p><strong>Все оставшиеся пункты выполнены</strong></p> }
 
