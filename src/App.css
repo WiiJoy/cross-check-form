@@ -96,6 +96,10 @@ body {
   white-space: pre-line;
 }
 
+.task-warning {
+  color: red;
+}
+
 .start {
   text-align: center;
   padding: 20px 0;

@@ -15,6 +15,8 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
   const inputValue = types.find((type)=>type.id === id);
   const inputType = inputValue?.type;
 
+  console.log('inputValue: ', inputValue)
+
   const parialPointsInputClassName = inputType === 1 ? 'partial-points-input partial-points-input_active' : 'partial-points-input'
 
   const setGlobalPartialPoints = (value, comp) => {
@@ -49,6 +51,8 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
               value={comments.find((comment)=>comment.id === id)?.value || ''}
               onInput={(event)=>dispatch(changeComments({id, value: event.target.value}))}/>
           </div> }
+        <p style={{display: inputValue && (inputValue.type === 0 || inputValue.type === 1) ? "block" : "none"}} className="task-warning">Обязательно оставь комма
+        ентарий по причине снижения баллов!</p>
       </div>
       <div className="radio-group">
         {phrases.map((phrase, inputIndex)=>
@@ -77,6 +81,8 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
               value={comments.find((comment)=>comment.id === id)?.value || ''}
               onInput={(event)=>dispatch(changeComments({id, value: event.target.value}))}/>
           </div> }
+        <p style={{display: inputValue && (inputValue.type === 0 || inputValue.type === 1) ? "block" : "none"}} className="task-warning">Обязательно оставь комма
+        ентарий по причине снижения баллов!</p>
       </div>
       <div className="radio-group">
         {penaltyPhrases.map((phrase, inputIndex)=>
