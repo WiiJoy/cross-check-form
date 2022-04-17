@@ -17,6 +17,7 @@ export default function Score(){
     </div>
     <button className="reset" onClick={()=>{
         window.scrollTo(0, 0)
+        document.body.querySelectorAll('TEXTAREA').forEach(area => area.style = 'none')
         dispatch(clearMarkType())
       }}>Сбросить</button>
     Total points: <span className="score-board">{score}</span>

@@ -563,9 +563,9 @@ label:hover {
 }
 
 /* When the radio button is checked, add a blue background */
-.radio-group input:checked ~ .checkmark {
+/* .radio-group input:checked ~ .checkmark {
   background-color: #2196f3;
-}
+} */
 
 .radio-group input:checked {
   color: rgb(39, 106, 192);
@@ -617,6 +617,18 @@ label:hover {
   height: 15px;
   border-radius: 50%;
   background: white;
+}
+
+.radio-group .checkmark_0:after {
+  background: red;
+}
+
+.radio-group .checkmark_1:after {
+  background: orange;
+}
+
+.radio-group .checkmark_2:after {
+  background: green;
 }
 
 .task-max-score {

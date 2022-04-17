@@ -16,8 +16,6 @@ export default function ContentWrapper(){
   const filteredCriteria = criteria.filter((item)=>{return item.type === 'subtask' || item.type === 'penalty'})
   const [wrongCriteria, partialCriteria, correctCriteria] = UseCriteria(types, filteredCriteria);
 
-  console.log(criteria)
-
   return <div className="content-wrapper">
     <section className="criteria-list">
       <form>

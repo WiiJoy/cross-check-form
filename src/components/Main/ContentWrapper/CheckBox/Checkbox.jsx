@@ -55,7 +55,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
           <label style={{display: inputIndex === 1 ? "none" : "flex" }} key={phrase}>
             {phrase}
             <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType)}/>
-            <span className="checkmark"/>
+            <span className={'checkmark checkmark_' + inputIndex}/>
             {inputIndex === 1 &&
             <input type='number' className={parialPointsInputClassName} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value)}/>}
           </label>
@@ -83,7 +83,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
           <label key={phrase}>
             {phrase}
             <input type="radio" name={id} disabled={isDisable} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType)}/>
-            <span className="checkmark"/>
+            <span className={'checkmark checkmark_' + inputIndex}/>
             {inputIndex === 1 &&
             <input type='number' className={parialPointsInputClassName} disabled={isDisable} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value, elType)}/>}
           </label>

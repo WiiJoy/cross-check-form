@@ -1,11 +1,6 @@
 export default function getTotalScore(types, criteria, partialPoints) {
   let sum = 0;
 
-  console.log('types: ', types)
-  console.log('criteria: ', criteria)
-  console.log('partialPoints: ', partialPoints)
-
-
   types.forEach((item) => {
     // console.log(partialPoints.find((partialPoint)=>+partialPoint.id === +item.id))
 
