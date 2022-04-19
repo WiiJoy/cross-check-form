@@ -19,7 +19,7 @@ export default function Info(){
   const isVisible = feedback.isFeedbackVisible
   const blockClassName = isVisible ? 'info visible' : 'info'
 
-  const areAllPointsChecked = types.length === filteredCriteria.length
+  // const areAllPointsChecked = types.length === filteredCriteria.length
   const areAllAnswersRight = wrongCriteria.length === 0 && partialCriteria.length === 0
 
   return <div className={blockClassName}>
@@ -28,7 +28,7 @@ export default function Info(){
       <div className="header"><p className="close" onClick={()=>dispatch(toggleInfo())}>×</p></div>
 
     {
-      areAllPointsChecked ?
+      // areAllPointsChecked ?
       <>
         <div className="content">
           <p><strong>Ваша отметка - {score} балла(ов)</strong></p>
@@ -77,7 +77,8 @@ export default function Info(){
         <div className="copy">
           <span onClick={()=>navigator.clipboard.writeText(response)}>Скопировать в буфер</span>
         </div>
-      </>: <p><strong>Вы проверили не все пункты задания</strong></p>
+      </>
+      // : <p><strong>Вы проверили не все пункты задания</strong></p>
     }
     </>}
   </div>
