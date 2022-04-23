@@ -64,7 +64,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
       </div>
     </div>
   } else {
-    return <div className={isDisable ? "checkbox-container checkbox-container_red" : "checkbox-container"}>
+    return <div className={isDisable ? "checkbox-container checkbox-container_penalty checkbox-container_red" : "checkbox-container checkbox-container_penalty"}>
       <div className="task-max-score">
         <span>Штрафные баллы</span>
         <p>{-maxPoints}</p>
@@ -92,5 +92,6 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
         )}
       </div>
     </div>
+    
   }
 }

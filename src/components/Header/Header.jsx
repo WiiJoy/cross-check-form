@@ -30,11 +30,10 @@ export default function Header(){
       <Score/>
     </div>
     <div className="header__nav">
-      <a href="#main-check" className="header__nav__item">Изменение ширины в Chrome</a>
-      <a href="#mozilla" className="header__nav__item">Изменение ширины в Firefox</a>
-      <a href="#1280width" className="header__nav__item">1280px+</a>
-      <a href="#768width" className="header__nav__item">768px - 1279px</a>
-      <a href="#320width" className="header__nav__item">320px - 767px</a>
+      <a href="#burger" className="header__nav__item">Burger menu</a>
+      <a href="#popup" className="header__nav__item">Popup</a>
+      <a href="#carousel" className="header__nav__item">Carousel</a>
+      <a href="#pagination" className="header__nav__item">Pagination</a>
     </div>
   </header>
 }

@@ -50,7 +50,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 6px solid #444;
-  padding: 50px 0 10px;
+  padding: 10px 0;
 }
 
 .header__nav {
@@ -140,6 +140,12 @@ body {
   background-color: rgba(23, 201, 0, 0.1);
 }
 
+.checkbox-container_penalty {
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #000;
+}
+
 .checkbox-container_red {
   background-color: rgba(201, 0, 0, .1);
 }
@@ -213,7 +219,7 @@ header.sticky h1 {
 }
 
 main {
-  padding-top: 160px;
+  padding-top: 110px;
 }
 
 .feedback {
@@ -333,7 +339,7 @@ main {
   font-weight: 400;
   width: 995px;
   margin: 0 auto;
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
   margin: 20px 0;
   white-space: pre-line;
 }
@@ -341,6 +347,7 @@ main {
 .title.title_bold h3 {
   font-weight: 700;
   font-size: 18px;
+  border-bottom: 1px solid
 }
 
 .information:after {
