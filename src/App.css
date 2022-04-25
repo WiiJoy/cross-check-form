@@ -54,11 +54,10 @@ body {
 }
 
 .header__nav {
-  padding: 10px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 3px solid #444
+  flex: 1;
 }
 
 .content-wrapper {
@@ -69,7 +68,6 @@ body {
   font-family: "Lato-Black", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-size: 32px;
-  letter-spacing: 1px;
   color: var(--color-main);
 }
 
@@ -159,7 +157,6 @@ label {
   cursor: pointer;
   user-select: none;
   line-height: 12px;
-  letter-spacing: 0.5px;
   text-align: center;
 }
 
@@ -197,7 +194,7 @@ header {
 }
 
 header.sticky {
-  padding: 10px 0;
+  padding: 0;
 }
 
 .header__main h1 {
@@ -222,6 +219,10 @@ main {
   padding-top: 110px;
 }
 
+.header__nav__item {
+  font-size: 14px;
+}
+
 .feedback {
   position: fixed;
   bottom: 10px;
@@ -237,7 +238,6 @@ main {
   cursor: pointer;
   box-shadow: 1px 1px 5px #444;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .feedback button {
@@ -347,7 +347,9 @@ main {
 .title.title_bold h3 {
   font-weight: 700;
   font-size: 18px;
-  border-bottom: 1px solid
+  border-bottom: 1px solid #000;
+  margin-top: 50px;
+  margin-bottom: 0;
 }
 
 .information:after {
@@ -484,7 +486,16 @@ main {
 
 .progress {
   display: inline-block;
-  padding: 0 15px;
+  padding: 0 15px 0 0;
+}
+
+.other-link {
+  transition: .3s;
+}
+
+.other-link:hover {
+  text-decoration: none;
+  color: #000;
 }
 
 .add-feedback {
@@ -543,6 +554,10 @@ label {
 
 label:hover {
   color: #2196f3;
+}
+
+.radio-phrase {
+  width: 75px;
 }
 
 .radio-group input {

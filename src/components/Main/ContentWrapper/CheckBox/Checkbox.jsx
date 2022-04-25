@@ -54,7 +54,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
       <div className="radio-group">
         {phrases.map((phrase, inputIndex)=>
           <label style={{display: inputIndex === 1 ? "none" : "flex" }} key={phrase}>
-            {phrase}
+            <span className="radio-phrase">{phrase}</span>
             <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType)}/>
             <span className={'checkmark checkmark_' + inputIndex}/>
             {inputIndex === 1 &&
