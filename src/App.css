@@ -58,6 +58,7 @@ body {
   justify-content: space-around;
   align-items: center;
   flex: 1;
+  padding: 10px 0;
 }
 
 .content-wrapper {

@@ -27,13 +27,14 @@ export default function Header(){
   return <header className={headerClassName}>
     <div className="header__main">
       <h1 className="title">{taskName}</h1>
-      <div className="header__nav">
-        <a href="#burger" className="header__nav__item other-link">Burger menu</a>
-        <a href="#popup" className="header__nav__item other-link">Popup</a>
-        <a href="#carousel" className="header__nav__item other-link">Carousel</a>
-        <a href="#pagination" className="header__nav__item other-link">Pagination</a>
-      </div>
       <Score/>
     </div>
+    <div className="header__nav">
+        <a href="#minimal" className="header__nav__item other-link">Minimal scope</a>
+        <a href="#basic" className="header__nav__item other-link">Basic scope</a>
+        <a href="#extra" className="header__nav__item other-link">Extra scope</a>
+        <a href="#technical" className="header__nav__item other-link">Technical requirements</a>
+        <a href="#penalties" className="header__nav__item other-link">Penalties</a>
+      </div>
   </header>
 }
