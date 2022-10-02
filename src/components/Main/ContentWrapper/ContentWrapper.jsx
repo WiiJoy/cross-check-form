@@ -23,7 +23,7 @@ export default function ContentWrapper(){
           criteria.map((item)=>{
             if(item.type === 'title') return <Title key={item.id} title={item.title} id={item.ident}/>
             if(item.type === 'subtask') return <CheckBox key={item.id} text={item.text} maxPoints={item.max} id={item.id} elType={item.type}/>
-            if(item.type === 'penalty') return <CheckBox key={item.id} text={item.text} maxPoints={item.max} id={item.id} elType={item.type} isDisable={CheckTypes(item.parentPens || [], item.parentPage, wrongCriteria, correctCriteria)}/>
+            if(item.type === 'penalty') return <CheckBox key={item.id} text={item.text} maxPoints={item.max} id={item.id} elType={item.type} isDisable={CheckTypes(item.parentPens || [], item.parentPage, wrongCriteria, correctCriteria)} parent={item.parentPage}/>
             return <div>Unexpected error</div>
           })
         }

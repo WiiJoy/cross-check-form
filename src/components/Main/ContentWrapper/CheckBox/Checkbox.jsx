@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { changePartialPoints, changeMarkType, changeComments } from '../../../../redux/main/actions'
 
-export default function CheckBox({ text, maxPoints, id, elType, isDisable = false }){
+export default function CheckBox({ text, maxPoints, id, elType, isDisable = false, parent = 0 }){
   const phrases = ['Не выполнено', 'Выполнено частично', 'Выполнено полностью']
   const penaltyPhrases = ['Полное снятие баллов', 'Частичное снятие баллов', 'Выполнено полностью']
   const [partialPoints, setPartialPoints] = useState(maxPoints/2);
@@ -28,9 +28,9 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
     }
   }
 
-  const changeMarkTypeAction = (event, inputIndex, comp) => {
+  const changeMarkTypeAction = (event, inputIndex, comp, currPar) => {
     if(event.target.tagName === "INPUT") {
-      dispatch(changeMarkType({id, type: inputIndex, comp}))
+      dispatch(changeMarkType({id, type: inputIndex, comp, currPar}))
     }
   }
 
@@ -55,7 +55,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
         {phrases.map((phrase, inputIndex)=>
           <label style={{display: inputIndex === 1 ? "none" : "flex" }} key={phrase}>
             <span className="radio-phrase">{phrase}</span>
-            <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType)}/>
+            <input type="radio" name={id} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType, parent)}/>
             <span className={'checkmark checkmark_' + inputIndex}/>
             {inputIndex === 1 &&
             <input type='number' className={parialPointsInputClassName} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value)}/>}
@@ -84,7 +84,7 @@ export default function CheckBox({ text, maxPoints, id, elType, isDisable = fals
         {penaltyPhrases.map((phrase, inputIndex)=>
           <label key={phrase}>
             {phrase}
-            <input type="radio" name={id} disabled={isDisable} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType)}/>
+            <input type="radio" name={id} disabled={isDisable} checked={inputType === inputIndex} onChange={(event)=>changeMarkTypeAction(event, inputIndex, elType, parent)}/>
             <span className={'checkmark checkmark_' + inputIndex}/>
             {inputIndex === 1 &&
             <input type='number' className={parialPointsInputClassName} disabled={isDisable} value={partialPoints} step={1} min={1} max={maxPoints - 1} onChange={(event)=>setGlobalPartialPoints(event.target.value, elType)}/>}
