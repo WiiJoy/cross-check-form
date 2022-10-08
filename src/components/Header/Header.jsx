@@ -28,8 +28,11 @@ export default function Header(){
     <div className="header__main">
       <h1 className="title">{taskName}</h1>
       <div className="header__nav">
-        <a href="#landing" className="header__nav__item other-link">Landing</a>
-        <a href="#donate" className="header__nav__item other-link">Donate</a>
+        <a href="#burger" className="header__nav__item other-link">Burger</a>
+        <a href="#caurusel" className="header__nav__item other-link">Carousel</a>
+        <a href="#testimonials" className="header__nav__item other-link">Testimonials</a>
+        <a href="#popup" className="header__nav__item other-link">Popup</a>
+        <a href="#amount" className="header__nav__item other-link">Amount</a>
       </div>
       <Score/>
     </div>
